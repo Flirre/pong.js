@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "flirre",
-  "license": "GPL-2.0",
+  "license": "GPL-3.0",
   "devDependencies": {
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0"
