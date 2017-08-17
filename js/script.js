@@ -7,16 +7,24 @@ window.onload = () => {
   let ball_dx = 2;
   let ball_dy = 0;
 
-  const ballRadius = 10;
+  const ballRadius = 5;
   const ballColour = '#AADDDD';
 
   const leftPaddleHeight = 50;
   const leftPaddleWidth = 10;
   const leftPaddleColour = ballColour;
-  let leftPaddleX = 0;
+  let leftPaddleX = 30;
   let leftPaddle_dx = 5;
-  let leftPaddleY = 0;
+  let leftPaddleY = 135;
   let leftPaddle_dy = -5;
+
+  const rightPaddleHeight = 50;
+  const rightPaddleWidth = 10;
+  const rightPaddleColour = ballColour;
+  let rightPaddleX = canvas.width - (rightPaddleWidth + 30);
+  let rightPaddle_dx = 5;
+  let rightPaddleY = 135;
+  let rightPaddle_dy = -5;
 
   let upPressed = false;
   let downPressed = false;
@@ -42,11 +50,22 @@ window.onload = () => {
     ctx.closePath();
   }
 
+  function drawRightPaddle() {
+    ctx.beginPath();
+    ctx.rect(rightPaddleX, (canvas.height - rightPaddleHeight) - rightPaddleY, leftPaddleWidth, leftPaddleHeight);
+    ctx.fillStyle = rightPaddleColour;
+    ctx.fill();
+    ctx.closePath();
+  }
+
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawLeftPaddle();
-    // if (ballX + ball_dx > canvas.width - 10) {
+    drawRightPaddle();
+    window.requestAnimationFrame(draw);
+
+    // if (ballX + ball_dx > canvas.width - ballRadius) {
     //   rightPoint += 1;
     //   console.log('right point:' + rightPoint);
     //   document.location.reload();
@@ -65,15 +84,16 @@ window.onload = () => {
     // ballX += ball_dx;
     // ballY += ball_dy;
 
-    if (upPressed && leftPaddleY <= (canvas.height - leftPaddleHeight)) {
+    if (upPressed && leftPaddleY < (canvas.height - leftPaddleHeight)) {
       leftPaddleY -= leftPaddle_dy;
-      console.log(canvas.height - leftPaddleHeight);
+      rightPaddleY -= rightPaddle_dy;
     }
 
     else if (downPressed && leftPaddleY > 0) {
       leftPaddleY += leftPaddle_dy;
+      rightPaddleY += rightPaddle_dy;
     }
-
+    console.log(leftPoint + ' - ' + rightPoint)
   }
 
   document.addEventListener('keydown', keyDownHandler, false);
@@ -98,5 +118,6 @@ window.onload = () => {
       downPressed = false;
     }
   }
-  setInterval(draw, 10);
+  // setInterval(draw, 10);
+  window.requestAnimationFrame(draw);
 };
