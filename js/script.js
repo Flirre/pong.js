@@ -124,13 +124,13 @@ window.onload = () => {
     }
 
     // ball bounces when it hits the right bracket.
-    if ((ballX + ball_dx) === rightPaddleX && ((ballY) <= (rightPaddleY + rightPaddleHeight)) && ((ballY) >= rightPaddleY)) {
+    if ((ballX) === rightPaddleX && ((ballY) <= (rightPaddleY + rightPaddleHeight)) && ((ballY) >= rightPaddleY)) {
       ball_dx = -ball_dx;
       ball_dy = randInt(-4, 4);
     }
 
     // ball bounces when it hits the left bracket.
-    if ((ballX + ball_dx) === (leftPaddleX + leftPaddleWidth) && ((ballY) <= (leftPaddleY + leftPaddleHeight)) && ((ballY) >= leftPaddleY)) {
+    if ((ballX) === (leftPaddleX + leftPaddleWidth) && ((ballY) <= (leftPaddleY + leftPaddleHeight)) && ((ballY) >= leftPaddleY)) {
       ball_dx = -ball_dx;
       ball_dy = randInt(-4, 4);
     }
